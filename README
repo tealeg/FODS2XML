@@ -1,0 +1,27 @@
+FODS2XML
+--------
+A couple of XSLT 2.0 files to help convert OpenOffice.org 3 Calce FODS XML documents to "meaningful" XML.   This process assumes that the data is arranged a tabular data with one table per sheet in the workbook, titles in the first row (which are valid XML element names), and with no extraneous data laying around!
+
+Right now it is quick and dirty, but anyone who wants to submit patches is welcome to do so, or take and do what you will (see License below).
+
+License:
+========
+This code is released under a simplified BSD license (See: COPYING).
+
+Usage:
+======
+
+Right now this is a two stage process and relies on Saxon 9.
+
+To convert from FODS to the intermediate tabular XML:
+
+    saxon -xsl:fods2tbl.xsl -s:<your FODS XML> collimit=<last column in table as integer>
+
+Once you have an intermediata tabular XML file you can then convert it to the meaningful format using this:
+
+    saxon -xsl:tbl2data.xsl -s:<your tabular XML file>
+
+Quick, dirty, easy, and somewhat useful to me at least!
+
+// 
+19th August 2010, Geoff Teale.
